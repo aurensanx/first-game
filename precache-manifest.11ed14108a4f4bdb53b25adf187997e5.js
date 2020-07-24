@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d56bef19a4753cbde6cbf5690314d8c6",
+    "revision": "ff334bb77e25399077dd419d8943d278",
     "url": "/first-game/index.html"
   },
   {
-    "revision": "092586d995c8e65bf244",
-    "url": "/first-game/static/css/main.ca94d7fb.chunk.css"
+    "revision": "0e55a4b078ae48d74eba",
+    "url": "/first-game/static/css/main.ae1fad4e.chunk.css"
   },
   {
     "revision": "8529572094812f83c0ea",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/first-game/static/js/2.28665d50.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "092586d995c8e65bf244",
+    "revision": "0e55a4b078ae48d74eba",
     "url": "/first-game/static/js/main.fb64a409.chunk.js"
   },
   {

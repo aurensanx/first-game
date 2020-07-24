@@ -28,7 +28,6 @@ body {
   }
 
   .board-container {
-    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,8 +35,7 @@ body {
 
     .board {
       position: relative;
-      width: 60%;
-      border: 1px solid #999;
+      //border: 1px solid #999;
 
       &:after {
         content: "";
@@ -58,10 +56,8 @@ body {
           background: #fff;
           border: 1px solid #999;
           float: left;
-          font-size: 10vw;
           font-weight: bold;
-          line-height: 10vw;
-
+          line-height: 8vw;
           padding: 0;
           text-align: center;
 
@@ -80,5 +76,29 @@ body {
 
 .kbd-navigation .square:focus {
   background: #ddd;
+}
+
+@media (orientation: landscape) {
+  .board-container {
+    width: 60%;
+    .board {
+      width: 50%;
+      .square {
+        font-size: 8vw;
+      }
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  .board-container {
+    width: 100%;
+    .board {
+      width: 80%;
+      .square {
+        font-size: 15vw;
+      }
+    }
+  }
 }
 

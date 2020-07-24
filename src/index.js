@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 
 function Square(props) {
   return (
-    <button className={`square ${props.square.active ? "winner" : ""}`} onClick={props.onClick}>
+    <button className={`square${props.square.active ? " winner" : ""}`} onClick={props.onClick}>
       {props.square.value}
     </button>
   )
@@ -20,21 +20,10 @@ class Board extends React.Component {
     );
   }
 
-  renderRow(i, columns) {
-    return (
-      <div className="board-row" key={i}>
-        {Array(columns).fill(0).map((c, index) => this.renderSquare(i + index))}
-      </div>
-    )
-  }
-
   render() {
-    const columns = 3
-    const rows = 3;
+    const cells = 9;
     return (
-      <div>
-        {Array(rows).fill(0).map((r, i) => this.renderRow(i * columns, columns))}
-      </div>
+      Array(cells).fill(0).map((r, i) => this.renderSquare(i))
     );
   }
 }
@@ -56,17 +45,26 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.map(s => ({...s}));
-    if (calculateWinner(squares) || squares[i].value) {
+    if (calculateWinner(squares)) {
       return;
     }
-    squares[i].value = this.state.xIsNext ? 'X' : 'O';
+    const nextValue = this.state.xIsNext ? 'X' : 'O';
+    const completed = areMovesCompleted(squares, nextValue);
+    if (completed && (!squares[i].value || squares[i].value !== nextValue)) {
+      return;
+    }
+    if (!completed && squares[i].value) {
+      return;
+    }
+
+    squares[i].value = completed ? '' : this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([{
         squares,
         clickedSquare: i,
       }]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      xIsNext: completed ? this.state.xIsNext : !this.state.xIsNext,
     })
   }
 
@@ -77,12 +75,6 @@ class Game extends React.Component {
     });
   }
 
-  orderMoves() {
-    this.setState({
-      isOrderDesc: !this.state.isOrderDesc,
-    })
-  }
-
   calculateMove(move) {
     return this.state.isOrderDesc ? this.state.history.length - 1 - move : move;
   }
@@ -91,23 +83,6 @@ class Game extends React.Component {
     let history = this.state.history.slice();
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-
-    if (this.state.isOrderDesc) {
-      history = history.reverse();
-    }
-    const moves = history.map((step, move) => {
-      const desc = step.clickedSquare !== undefined ?
-        `Go to move #${this.calculateMove(move)}: (${parseInt(step.clickedSquare / 3)}, ${step.clickedSquare % 3})` :
-        'Go to game start'
-      return (
-        <li key={move}>
-          <button
-            className={`${this.calculateMove(move) === this.state.stepNumber ? "active" : ""}`}
-            onClick={() => this.jumpTo(this.calculateMove(move))}
-          >{desc}</button>
-        </li>
-      )
-    })
 
     let status;
     if (winner) {
@@ -122,16 +97,16 @@ class Game extends React.Component {
     }
     return (
       <div className="game">
-        <div className="game-board">
-          <div className="next-player">{status}</div>
-          <Board
-            squares={current.squares}
-            onClick={i => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <button onClick={() => this.orderMoves()}>Order Moves</button>
-          <ol>{moves}</ol>
+        <div className="next-player">{status}</div>
+        <div className="board-container">
+          <div className="board">
+            <div className="board-content">
+              <Board
+                squares={current.squares}
+                onClick={i => this.handleClick(i)}
+              />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -163,4 +138,8 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function areMovesCompleted(squares, nextValue) {
+  return squares.filter(s => s.value === nextValue).length === 3;
 }

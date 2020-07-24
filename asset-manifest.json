@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/first-game/static/css/main.4a720935.chunk.css",
+    "main.css": "/first-game/static/css/main.ca94d7fb.chunk.css",
     "main.js": "/first-game/static/js/main.fb64a409.chunk.js",
     "main.js.map": "/first-game/static/js/main.fb64a409.chunk.js.map",
     "runtime-main.js": "/first-game/static/js/runtime-main.ad8f6f6c.js",
@@ -8,15 +8,15 @@
     "static/js/2.28665d50.chunk.js": "/first-game/static/js/2.28665d50.chunk.js",
     "static/js/2.28665d50.chunk.js.map": "/first-game/static/js/2.28665d50.chunk.js.map",
     "index.html": "/first-game/index.html",
-    "precache-manifest.fee5082e4d718fb53db9fa7caa535dc1.js": "/first-game/precache-manifest.fee5082e4d718fb53db9fa7caa535dc1.js",
+    "precache-manifest.eb3328184ca3888449ff760d90aa16c9.js": "/first-game/precache-manifest.eb3328184ca3888449ff760d90aa16c9.js",
     "service-worker.js": "/first-game/service-worker.js",
-    "static/css/main.4a720935.chunk.css.map": "/first-game/static/css/main.4a720935.chunk.css.map",
+    "static/css/main.ca94d7fb.chunk.css.map": "/first-game/static/css/main.ca94d7fb.chunk.css.map",
     "static/js/2.28665d50.chunk.js.LICENSE.txt": "/first-game/static/js/2.28665d50.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ad8f6f6c.js",
     "static/js/2.28665d50.chunk.js",
-    "static/css/main.4a720935.chunk.css",
+    "static/css/main.ca94d7fb.chunk.css",
     "static/js/main.fb64a409.chunk.js"
   ]
 }
